@@ -1,0 +1,1409 @@
+{
+  "exportedAt": "2026-11-24T03:40:55.474Z",
+  "counts": {
+    "users": 1,
+    "settings": 1,
+    "accounts": 42,
+    "contacts": 2,
+    "categories": 6,
+    "items": 6,
+    "fixedAssets": 1,
+    "salesInvoices": 2,
+    "purchaseInvoices": 2,
+    "cashTransactions": 3,
+    "journalEntries": 13
+  },
+  "data": {
+    "users": [
+      {
+        "id": "522fc3af-807e-47e8-8f00-0b878e848e0c",
+        "username": "admin",
+        "passwordHash": "$2a$10$spKhUEhJMiKTMQTDy1A8XedYQkKd8aKqNa7lrqw98OZ2UoKXR6q4W",
+        "fullName": "Pengelola BUMKam Tungkuwiri Mandiri",
+        "role": "ADMIN",
+        "isActive": true,
+        "createdAt": "2026-10-19T07:16:36.071Z",
+        "updatedAt": "2026-10-19T07:16:36.071Z"
+      }
+    ],
+    "settings": [
+      {
+        "id": 1,
+        "bumkamName": "BUMKam Tungkuwiri Mandiri",
+        "villageName": "Kampung Doyo Lama",
+        "districtName": "Distrik Waibu",
+        "regencyName": "Kabupaten Jayapura",
+        "phone": "0812-XXXX-XXXX",
+        "email": "bumkam.tungkuwiri@gmail.com",
+        "address": "Kampung Doyo Lama, Distrik Waibu, Kabupaten Jayapura, Papua",
+        "businessType": "Pencetakan Baju Kaos (Sablon) & Konveksi",
+        "establishedDate": null,
+        "profitSharingActive": true,
+        "padkamPercent": "40",
+        "reserveFundPercent": "30",
+        "managementBonusPercent": "20",
+        "socialFundPercent": "10",
+        "fiscalYear": 2026,
+        "lockDate": null,
+        "updatedAt": "2026-10-19T08:27:35.317Z"
+      }
+    ],
+    "accounts": [
+      {
+        "id": "e953aa78-697b-416a-9a44-8119d1f8a6b5",
+        "code": "1-1100",
+        "name": "Kas Operasional Workshop",
+        "category": "ASSET",
+        "subCategory": "KAS_BANK",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.147Z",
+        "updatedAt": "2026-10-19T07:16:36.147Z"
+      },
+      {
+        "id": "7948ef78-b8eb-4631-852c-234e022a51da",
+        "code": "1-1110",
+        "name": "Bank BUMKam (BPD Papua / BRI)",
+        "category": "ASSET",
+        "subCategory": "KAS_BANK",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.165Z",
+        "updatedAt": "2026-10-19T07:16:36.165Z"
+      },
+      {
+        "id": "8f7dac3a-dc85-4208-a77b-b2043f6680c1",
+        "code": "1-1200",
+        "name": "Piutang Usaha Pelanggan Sablon",
+        "category": "ASSET",
+        "subCategory": "PIUTANG",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.182Z",
+        "updatedAt": "2026-10-19T07:16:36.182Z"
+      },
+      {
+        "id": "86ced3cb-76df-45e7-b35a-f74ded4755f9",
+        "code": "1-1310",
+        "name": "Persediaan Bahan Baku (Kaos Polos)",
+        "category": "ASSET",
+        "subCategory": "PERSEDIAAN",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.196Z",
+        "updatedAt": "2026-10-19T07:16:36.196Z"
+      },
+      {
+        "id": "56e9f0c5-a6e9-49ed-b977-f4d4ec2cf8bc",
+        "code": "1-1320",
+        "name": "Persediaan Bahan Baku (Tinta & Kimia)",
+        "category": "ASSET",
+        "subCategory": "PERSEDIAAN",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.232Z",
+        "updatedAt": "2026-10-19T07:16:36.232Z"
+      },
+      {
+        "id": "da998614-8ac4-4fd4-a380-48fff730781f",
+        "code": "1-1330",
+        "name": "Persediaan Bahan Cetak (Film & Lem DTF)",
+        "category": "ASSET",
+        "subCategory": "PERSEDIAAN",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.244Z",
+        "updatedAt": "2026-10-19T07:16:36.244Z"
+      },
+      {
+        "id": "fc9b45c8-edd5-4208-8f55-eef1e75f82de",
+        "code": "1-1340",
+        "name": "Persediaan Bahan Pembantu & Kemasan",
+        "category": "ASSET",
+        "subCategory": "PERSEDIAAN",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.297Z",
+        "updatedAt": "2026-10-19T07:16:36.297Z"
+      },
+      {
+        "id": "08ac01d3-add8-4546-9bb3-e0a49838aba1",
+        "code": "1-1350",
+        "name": "Persediaan Kaos Sablon Siap Jual",
+        "category": "ASSET",
+        "subCategory": "PERSEDIAAN",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.318Z",
+        "updatedAt": "2026-10-19T07:16:36.318Z"
+      },
+      {
+        "id": "7cfe0389-e497-46a7-96cb-e4dd38ba6fdf",
+        "code": "1-1400",
+        "name": "Uang Muka Pembelian Bahan",
+        "category": "ASSET",
+        "subCategory": "ASET_LANCAR_LAIN",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.332Z",
+        "updatedAt": "2026-10-19T07:16:36.332Z"
+      },
+      {
+        "id": "7e2c71fc-cdb2-455f-b77a-539e195b7555",
+        "code": "1-2100",
+        "name": "Mesin & Peralatan Sablon (Heat Press, DTF)",
+        "category": "ASSET",
+        "subCategory": "ASET_TETAP",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.348Z",
+        "updatedAt": "2026-10-19T07:16:36.348Z"
+      },
+      {
+        "id": "632659bb-8020-4a7a-84e8-1efb2e5c43dc",
+        "code": "1-2110",
+        "name": "Akumulasi Penyusutan Mesin Sablon",
+        "category": "ASSET",
+        "subCategory": "AKUMULASI_PENYUSUTAN",
+        "normalBalance": "CREDIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.363Z",
+        "updatedAt": "2026-10-19T07:16:36.363Z"
+      },
+      {
+        "id": "f5ba101c-36b9-4373-90aa-2d7783befad1",
+        "code": "1-2200",
+        "name": "Meja Sablon Manual & Screen",
+        "category": "ASSET",
+        "subCategory": "ASET_TETAP",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.379Z",
+        "updatedAt": "2026-10-19T07:16:36.379Z"
+      },
+      {
+        "id": "9ff483be-6566-49a5-85a9-69a9db097ca4",
+        "code": "1-2210",
+        "name": "Akumulasi Penyusutan Meja Sablon",
+        "category": "ASSET",
+        "subCategory": "AKUMULASI_PENYUSUTAN",
+        "normalBalance": "CREDIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.389Z",
+        "updatedAt": "2026-10-19T07:16:36.389Z"
+      },
+      {
+        "id": "a8405c1e-3a8a-4dfb-aa47-9bbfd9a83ac4",
+        "code": "1-2300",
+        "name": "Peralatan Komputer & Desain",
+        "category": "ASSET",
+        "subCategory": "ASET_TETAP",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.404Z",
+        "updatedAt": "2026-10-19T07:16:36.404Z"
+      },
+      {
+        "id": "2d994cec-c36e-4e28-a360-52d80f6442a9",
+        "code": "1-2310",
+        "name": "Akumulasi Penyusutan Komputer",
+        "category": "ASSET",
+        "subCategory": "AKUMULASI_PENYUSUTAN",
+        "normalBalance": "CREDIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.420Z",
+        "updatedAt": "2026-10-19T07:16:36.420Z"
+      },
+      {
+        "id": "8193b667-66e0-4bf8-b366-642deee6bbfb",
+        "code": "2-1100",
+        "name": "Utang Usaha Pemasok Bahan",
+        "category": "LIABILITY",
+        "subCategory": "KEWAJIBAN_LANCAR",
+        "normalBalance": "CREDIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.436Z",
+        "updatedAt": "2026-10-19T07:16:36.436Z"
+      },
+      {
+        "id": "40ed5029-244c-43c9-9d7f-4e5380f60108",
+        "code": "2-1200",
+        "name": "Pendapatan Diterima di Muka (DP Pesanan)",
+        "category": "LIABILITY",
+        "subCategory": "KEWAJIBAN_LANCAR",
+        "normalBalance": "CREDIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.451Z",
+        "updatedAt": "2026-10-19T07:16:36.451Z"
+      },
+      {
+        "id": "90959c76-7bfe-4630-9803-711958fd1378",
+        "code": "2-1300",
+        "name": "Beban Yang Masih Harus Dibayar",
+        "category": "LIABILITY",
+        "subCategory": "KEWAJIBAN_LANCAR",
+        "normalBalance": "CREDIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.466Z",
+        "updatedAt": "2026-10-19T07:16:36.466Z"
+      },
+      {
+        "id": "916d2ee6-2f90-4602-9f85-cb1297268ada",
+        "code": "2-1500",
+        "name": "Utang Bagi Hasil PADKam (Kampung Doyo Lama)",
+        "category": "LIABILITY",
+        "subCategory": "KEWAJIBAN_LANCAR",
+        "normalBalance": "CREDIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.480Z",
+        "updatedAt": "2026-10-19T07:16:36.480Z"
+      },
+      {
+        "id": "c5166f62-433e-457a-81a6-0de3b7901808",
+        "code": "2-1600",
+        "name": "Utang Jasa Pengurus & Karyawan",
+        "category": "LIABILITY",
+        "subCategory": "KEWAJIBAN_LANCAR",
+        "normalBalance": "CREDIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.491Z",
+        "updatedAt": "2026-10-19T07:16:36.491Z"
+      },
+      {
+        "id": "a492af1f-2ae1-47fe-bc83-74b0f23e80c9",
+        "code": "3-1000",
+        "name": "Modal Penyertaan Kampung Doyo Lama",
+        "category": "EQUITY",
+        "subCategory": "MODAL_DESA",
+        "normalBalance": "CREDIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.506Z",
+        "updatedAt": "2026-10-19T07:16:36.506Z"
+      },
+      {
+        "id": "047a4166-5e29-493d-b69a-4b9cb2a53a27",
+        "code": "3-2000",
+        "name": "Modal Penyertaan Masyarakat",
+        "category": "EQUITY",
+        "subCategory": "MODAL_MASYARAKAT",
+        "normalBalance": "CREDIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.523Z",
+        "updatedAt": "2026-10-19T07:16:36.523Z"
+      },
+      {
+        "id": "af367b1e-17b0-49d4-a8c7-2f2008472365",
+        "code": "3-3000",
+        "name": "Saldo Laba Ditahan Tahun Lalu",
+        "category": "EQUITY",
+        "subCategory": "LABA_DITAHAN",
+        "normalBalance": "CREDIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.536Z",
+        "updatedAt": "2026-10-19T07:16:36.536Z"
+      },
+      {
+        "id": "81a7e419-8749-48a7-801a-76fc3bfac0d5",
+        "code": "3-4000",
+        "name": "Saldo Laba Periode Berjalan",
+        "category": "EQUITY",
+        "subCategory": "LABA_BERJALAN",
+        "normalBalance": "CREDIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.551Z",
+        "updatedAt": "2026-10-19T07:16:36.551Z"
+      },
+      {
+        "id": "d658942b-9bdf-494a-ac92-41620ab92a19",
+        "code": "3-5000",
+        "name": "Cadangan Umum BUMKam",
+        "category": "EQUITY",
+        "subCategory": "CADANGAN_MODAL",
+        "normalBalance": "CREDIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.566Z",
+        "updatedAt": "2026-10-19T07:16:36.566Z"
+      },
+      {
+        "id": "09795511-1a44-4b2e-b237-78e28f963f3c",
+        "code": "4-1000",
+        "name": "Pendapatan Penjualan Kaos Jadi",
+        "category": "REVENUE",
+        "subCategory": "PENDAPATAN_OPERASIONAL",
+        "normalBalance": "CREDIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.582Z",
+        "updatedAt": "2026-10-19T07:16:36.582Z"
+      },
+      {
+        "id": "57035561-224a-41ab-9689-20ed566b22ad",
+        "code": "4-2000",
+        "name": "Pendapatan Jasa Sablon Kustom & Maklon",
+        "category": "REVENUE",
+        "subCategory": "PENDAPATAN_OPERASIONAL",
+        "normalBalance": "CREDIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.598Z",
+        "updatedAt": "2026-10-19T07:16:36.598Z"
+      },
+      {
+        "id": "c20c5c97-3b42-4db0-ba56-8550da8151b1",
+        "code": "4-9000",
+        "name": "Pendapatan Operasional Lainnya",
+        "category": "REVENUE",
+        "subCategory": "PENDAPATAN_OPERASIONAL",
+        "normalBalance": "CREDIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.608Z",
+        "updatedAt": "2026-10-19T07:16:36.608Z"
+      },
+      {
+        "id": "1dcac22c-7a2c-46d3-ad02-53d316e5dc54",
+        "code": "5-1000",
+        "name": "Beban Pokok - Pemakaian Kaos Polos",
+        "category": "EXPENSE",
+        "subCategory": "HPP",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.622Z",
+        "updatedAt": "2026-10-19T07:16:36.622Z"
+      },
+      {
+        "id": "a01373f5-4c28-4907-bec1-9075d3679338",
+        "code": "5-2000",
+        "name": "Beban Pokok - Pemakaian Tinta & Kimia",
+        "category": "EXPENSE",
+        "subCategory": "HPP",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.637Z",
+        "updatedAt": "2026-10-19T07:16:36.637Z"
+      },
+      {
+        "id": "9a4457f2-a54d-4b5c-aee6-484789ba39ab",
+        "code": "5-3000",
+        "name": "Beban Pokok - Pemakaian Film & Lem DTF",
+        "category": "EXPENSE",
+        "subCategory": "HPP",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.650Z",
+        "updatedAt": "2026-10-19T07:16:36.650Z"
+      },
+      {
+        "id": "ddc81eaf-476c-4344-8e48-4fe88e2b0234",
+        "code": "5-4000",
+        "name": "Biaya Tenaga Kerja Langsung Sablon",
+        "category": "EXPENSE",
+        "subCategory": "HPP",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.663Z",
+        "updatedAt": "2026-10-19T07:16:36.663Z"
+      },
+      {
+        "id": "291ae55d-2f3a-4f81-96c8-4723f867aba0",
+        "code": "5-5000",
+        "name": "Biaya Overhead Bengkel Sablon",
+        "category": "EXPENSE",
+        "subCategory": "HPP",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.673Z",
+        "updatedAt": "2026-10-19T07:16:36.673Z"
+      },
+      {
+        "id": "bb605ec1-186a-4ebe-a6be-cb73cec1e5a6",
+        "code": "6-1000",
+        "name": "Beban Gaji & Honor Pengurus BUMKam",
+        "category": "EXPENSE",
+        "subCategory": "BEBAN_OPERASIONAL",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.685Z",
+        "updatedAt": "2026-10-19T07:16:36.685Z"
+      },
+      {
+        "id": "45f488a9-3327-4520-8a49-6553cf28013e",
+        "code": "6-2000",
+        "name": "Beban Pemeliharaan & Servis Mesin",
+        "category": "EXPENSE",
+        "subCategory": "BEBAN_OPERASIONAL",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.697Z",
+        "updatedAt": "2026-10-19T07:16:36.697Z"
+      },
+      {
+        "id": "ccca513f-782c-4a19-b88d-e6bb584b8115",
+        "code": "6-3000",
+        "name": "Beban Listrik, Air & Kebersihan Workshop",
+        "category": "EXPENSE",
+        "subCategory": "BEBAN_OPERASIONAL",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.706Z",
+        "updatedAt": "2026-10-19T07:16:36.706Z"
+      },
+      {
+        "id": "31c3d74d-255f-44f7-9ca5-a8e7f959d3b7",
+        "code": "6-4000",
+        "name": "Beban Perlengkapan Toko & ATK",
+        "category": "EXPENSE",
+        "subCategory": "BEBAN_OPERASIONAL",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.717Z",
+        "updatedAt": "2026-10-19T07:16:36.717Z"
+      },
+      {
+        "id": "7278e4c9-9037-4751-8fe3-2ba57206186a",
+        "code": "6-5000",
+        "name": "Beban Promosi, Pulsa & Transportasi",
+        "category": "EXPENSE",
+        "subCategory": "BEBAN_OPERASIONAL",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.729Z",
+        "updatedAt": "2026-10-19T07:16:36.729Z"
+      },
+      {
+        "id": "856b172f-4b1e-41db-855a-ae175b2b1f4e",
+        "code": "6-6000",
+        "name": "Beban Penyusutan Aset Tetap",
+        "category": "EXPENSE",
+        "subCategory": "BEBAN_OPERASIONAL",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.738Z",
+        "updatedAt": "2026-10-19T07:16:36.738Z"
+      },
+      {
+        "id": "4f792b82-817c-4fd4-8caf-f6e620b1f4ec",
+        "code": "6-9000",
+        "name": "Beban Operasional Lain-lain",
+        "category": "EXPENSE",
+        "subCategory": "BEBAN_OPERASIONAL",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.750Z",
+        "updatedAt": "2026-10-19T07:16:36.750Z"
+      },
+      {
+        "id": "a92d256c-3d63-4bf7-857e-282266cc9017",
+        "code": "8-1000",
+        "name": "Pendapatan Jasa Giro / Bunga Bank",
+        "category": "REVENUE",
+        "subCategory": "PENDAPATAN_NON_OPS",
+        "normalBalance": "CREDIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.763Z",
+        "updatedAt": "2026-10-19T07:16:36.763Z"
+      },
+      {
+        "id": "104404c7-3709-4d36-b342-6543fa7377ec",
+        "code": "9-1000",
+        "name": "Beban Administrasi Bank & Pajak Bunga",
+        "category": "EXPENSE",
+        "subCategory": "BEBAN_NON_OPS",
+        "normalBalance": "DEBIT",
+        "isActive": true,
+        "isHeader": false,
+        "parentId": null,
+        "createdAt": "2026-10-19T07:16:36.773Z",
+        "updatedAt": "2026-10-19T07:16:36.773Z"
+      }
+    ],
+    "contacts": [
+      {
+        "id": "1f095268-f24a-4f01-8fea-d6c9759b10f3",
+        "code": "PLG-UMUM",
+        "name": "Pelanggan Umum / Eceran Doyo Lama",
+        "type": "CUSTOMER",
+        "phone": "-",
+        "email": null,
+        "address": "Kampung Doyo Lama",
+        "notes": "Pelanggan eceran non-member",
+        "isActive": true,
+        "createdAt": "2026-10-19T07:16:36.931Z",
+        "updatedAt": "2026-10-19T07:16:36.931Z"
+      },
+      {
+        "id": "ce76fc10-ab5e-40df-a88b-1a245429affd",
+        "code": "SPL-KAOS-01",
+        "name": "Distributor Kaos Polos & Tinta Sablon",
+        "type": "SUPPLIER",
+        "phone": "0813-XXXX-XXXX",
+        "email": null,
+        "address": "Sentani / Jayapura",
+        "notes": "Pemasok utama bahan kaos combed dan tinta",
+        "isActive": true,
+        "createdAt": "2026-10-19T07:16:36.946Z",
+        "updatedAt": "2026-10-19T07:16:36.946Z"
+      }
+    ],
+    "categories": [
+      {
+        "id": "192036fe-1fab-43a9-9dec-083cdaddbf01",
+        "name": "Kaos Polos",
+        "type": "RAW_MATERIAL",
+        "createdAt": "2026-10-19T07:16:36.786Z"
+      },
+      {
+        "id": "4486d533-67c7-4cfd-804c-ac9a2f8b850e",
+        "name": "Tinta & Kimia Sablon",
+        "type": "RAW_MATERIAL",
+        "createdAt": "2026-10-19T07:16:36.797Z"
+      },
+      {
+        "id": "68a14bd9-8fe7-4ab1-b0f8-27d7880f263f",
+        "name": "Bahan Cetak DTF",
+        "type": "RAW_MATERIAL",
+        "createdAt": "2026-10-19T07:16:36.809Z"
+      },
+      {
+        "id": "e7a1a16e-0a63-4485-9a6e-3ef0c2426d02",
+        "name": "Bahan Pembantu & Kemasan",
+        "type": "SUPPLIES",
+        "createdAt": "2026-10-19T07:16:36.820Z"
+      },
+      {
+        "id": "6021b316-c25a-456f-af59-3187bcf29ddf",
+        "name": "Kaos Sablon Siap Jual",
+        "type": "FINISHED_GOOD",
+        "createdAt": "2026-10-19T07:16:36.835Z"
+      },
+      {
+        "id": "0f79951d-cb45-44b6-81e3-fd055046c5fb",
+        "name": "Jasa Sablon Kustom",
+        "type": "SERVICE",
+        "createdAt": "2026-10-19T07:16:36.848Z"
+      }
+    ],
+    "items": [
+      {
+        "id": "cc1f190d-c035-44d5-9055-ae816e9764dc",
+        "code": "KP-30S-BLK-L",
+        "name": "Kaos Polos Cotton Combed 30s Hitam (L)",
+        "type": "RAW_MATERIAL",
+        "categoryId": "192036fe-1fab-43a9-9dec-083cdaddbf01",
+        "unit": "Pcs",
+        "costPrice": "38000",
+        "sellingPrice": "55000",
+        "currentStock": "36",
+        "minStockAlert": "10",
+        "isActive": true,
+        "createdAt": "2026-10-19T07:16:36.857Z",
+        "updatedAt": "2026-10-19T08:20:42.073Z"
+      },
+      {
+        "id": "f84ffefd-3cda-40f7-a1d4-d0336c85dd9e",
+        "code": "KP-30S-WHT-L",
+        "name": "Kaos Polos Cotton Combed 30s Putih (L)",
+        "type": "RAW_MATERIAL",
+        "categoryId": "192036fe-1fab-43a9-9dec-083cdaddbf01",
+        "unit": "Pcs",
+        "costPrice": "38000",
+        "sellingPrice": "55000",
+        "currentStock": "0",
+        "minStockAlert": "10",
+        "isActive": true,
+        "createdAt": "2026-10-19T07:16:36.873Z",
+        "updatedAt": "2026-10-19T07:16:36.873Z"
+      },
+      {
+        "id": "1e83b2f5-fe06-4761-ae11-c61b35c37e0b",
+        "code": "TNT-PLST-BLK",
+        "name": "Tinta Sablon Plastisol Hitam (1 Kg)",
+        "type": "RAW_MATERIAL",
+        "categoryId": "4486d533-67c7-4cfd-804c-ac9a2f8b850e",
+        "unit": "Kg",
+        "costPrice": "125000",
+        "sellingPrice": "0",
+        "currentStock": "5",
+        "minStockAlert": "2",
+        "isActive": true,
+        "createdAt": "2026-10-19T07:16:36.892Z",
+        "updatedAt": "2026-10-19T08:10:39.288Z"
+      },
+      {
+        "id": "795bdc07-9aa5-4d9f-820e-5e33c57e456f",
+        "code": "DTF-FILM-100M",
+        "name": "PET Film DTF Lebar 30cm (Roll 100m)",
+        "type": "RAW_MATERIAL",
+        "categoryId": "68a14bd9-8fe7-4ab1-b0f8-27d7880f263f",
+        "unit": "Roll",
+        "costPrice": "480000",
+        "sellingPrice": "0",
+        "currentStock": "0",
+        "minStockAlert": "1",
+        "isActive": true,
+        "createdAt": "2026-10-19T07:16:36.905Z",
+        "updatedAt": "2026-10-19T07:16:36.905Z"
+      },
+      {
+        "id": "ea574e00-f222-48e1-9e02-408b901232c3",
+        "code": "JS-DTF-A4",
+        "name": "Jasa Sablon DTF Ukuran A4 Custom",
+        "type": "SERVICE",
+        "categoryId": "0f79951d-cb45-44b6-81e3-fd055046c5fb",
+        "unit": "Pcs",
+        "costPrice": "12000",
+        "sellingPrice": "30000",
+        "currentStock": "0",
+        "minStockAlert": "0",
+        "isActive": true,
+        "createdAt": "2026-10-19T07:16:36.917Z",
+        "updatedAt": "2026-10-19T07:16:36.917Z"
+      },
+      {
+        "id": "33285d63-8188-44c0-9ecd-0595ca4b91a1",
+        "code": "30s xl",
+        "name": "kaos polos",
+        "type": "SERVICE",
+        "categoryId": "0f79951d-cb45-44b6-81e3-fd055046c5fb",
+        "unit": "Pcs",
+        "costPrice": "0",
+        "sellingPrice": "0",
+        "currentStock": "0",
+        "minStockAlert": "5",
+        "isActive": true,
+        "createdAt": "2026-11-09T02:41:27.340Z",
+        "updatedAt": "2026-11-09T02:41:27.340Z"
+      }
+    ],
+    "fixedAssets": [
+      {
+        "id": "a8f9e89b-7c1f-4a2a-a671-740bc3f6f026",
+        "code": "AST-0001",
+        "name": "Mesin Heat Press 40x60 High Pressure",
+        "acquisitionDate": "2026-03-31T23:00:00.000Z",
+        "acquisitionCost": "8000000",
+        "salvageValue": "800000",
+        "usefulLifeMonths": 48,
+        "monthlyDepreciation": "150000",
+        "accumulatedDepreciation": "150000",
+        "assetAccountId": "7e2c71fc-cdb2-455f-b77a-539e195b7555",
+        "depreciationAccountId": "632659bb-8020-4a7a-84e8-1efb2e5c43dc",
+        "expenseAccountId": "856b172f-4b1e-41db-855a-ae175b2b1f4e",
+        "status": "ACTIVE",
+        "notes": "Peralatan sablon workshop Kampung Doyo Lama",
+        "createdAt": "2026-10-19T08:27:35.242Z",
+        "updatedAt": "2026-10-19T08:27:35.298Z"
+      }
+    ],
+    "assetDepreciations": [
+      {
+        "id": "6cafb51b-0749-43fb-9322-8933262c8b0e",
+        "fixedAssetId": "a8f9e89b-7c1f-4a2a-a671-740bc3f6f026",
+        "periodMonth": 4,
+        "periodYear": 2026,
+        "amount": "150000",
+        "journalEntryId": "4999a3aa-6b04-4539-a757-d140d6f90701",
+        "createdAt": "2026-10-19T08:27:35.288Z"
+      }
+    ],
+    "salesInvoices": [
+      {
+        "id": "63996e51-0082-4702-a66a-42d7622810ef",
+        "invoiceNumber": "INV/2026/04/0001",
+        "date": "2026-04-25T05:00:00.000Z",
+        "dueDate": null,
+        "customerId": "1f095268-f24a-4f01-8fea-d6c9759b10f3",
+        "subtotal": "780000",
+        "discountAmount": "0",
+        "grandTotal": "780000",
+        "paidAmount": "780000",
+        "paymentStatus": "PAID",
+        "cashAccountId": "e953aa78-697b-416a-9a44-8119d1f8a6b5",
+        "notes": null,
+        "journalEntryId": "169af163-5f4f-414c-b52a-9895d8af3910",
+        "createdAt": "2026-10-19T08:20:42.058Z",
+        "updatedAt": "2026-10-19T08:20:42.058Z",
+        "items": [
+          {
+            "id": "377781c2-cdf6-4979-a3f9-874080bc4671",
+            "salesInvoiceId": "63996e51-0082-4702-a66a-42d7622810ef",
+            "itemId": "cc1f190d-c035-44d5-9055-ae816e9764dc",
+            "description": "Sablon DTF Dada + Punggung",
+            "quantity": "12",
+            "unitPrice": "65000",
+            "costPrice": "38000",
+            "totalPrice": "780000"
+          }
+        ]
+      },
+      {
+        "id": "35741867-03e2-4dff-a7da-1a284aca042e",
+        "invoiceNumber": "INV/2026/04/0002",
+        "date": "2026-04-25T05:00:00.000Z",
+        "dueDate": "2026-05-10T00:00:00.000Z",
+        "customerId": "1f095268-f24a-4f01-8fea-d6c9759b10f3",
+        "subtotal": "1800000",
+        "discountAmount": "0",
+        "grandTotal": "1800000",
+        "paidAmount": "1800000",
+        "paymentStatus": "PAID",
+        "cashAccountId": "7948ef78-b8eb-4631-852c-234e022a51da",
+        "notes": null,
+        "journalEntryId": "721b54b0-58d8-42dc-8a33-e076dc7f1c0f",
+        "createdAt": "2026-10-19T08:20:42.094Z",
+        "updatedAt": "2026-10-19T08:20:42.121Z",
+        "items": [
+          {
+            "id": "ab9dc3e0-a685-43a9-89e0-f4cd0b2757ad",
+            "salesInvoiceId": "35741867-03e2-4dff-a7da-1a284aca042e",
+            "itemId": "cc1f190d-c035-44d5-9055-ae816e9764dc",
+            "description": "Sablon Kaos Panitia Doyo Lama",
+            "quantity": "24",
+            "unitPrice": "75000",
+            "costPrice": "38000",
+            "totalPrice": "1800000"
+          }
+        ]
+      }
+    ],
+    "purchaseInvoices": [
+      {
+        "id": "3f0bdb86-c488-4172-939c-d1d0f1ab9886",
+        "purchaseNumber": "PO/2026/04/0001",
+        "date": "2026-04-22T00:00:00.000Z",
+        "dueDate": null,
+        "supplierId": "ce76fc10-ab5e-40df-a88b-1a245429affd",
+        "totalAmount": "1900000",
+        "paidAmount": "1900000",
+        "paymentStatus": "PAID",
+        "cashAccountId": "e953aa78-697b-416a-9a44-8119d1f8a6b5",
+        "notes": null,
+        "journalEntryId": "40547d45-c1af-4041-b584-27d0c712f80a",
+        "createdAt": "2026-10-19T08:10:39.237Z",
+        "updatedAt": "2026-10-19T08:10:39.237Z",
+        "items": [
+          {
+            "id": "1c8129db-ae14-48a5-9e78-617cc367a69b",
+            "purchaseInvoiceId": "3f0bdb86-c488-4172-939c-d1d0f1ab9886",
+            "itemId": "cc1f190d-c035-44d5-9055-ae816e9764dc",
+            "quantity": "50",
+            "unitPrice": "38000",
+            "totalPrice": "1900000"
+          }
+        ]
+      },
+      {
+        "id": "66b8611a-f863-479d-8df7-e4763f605710",
+        "purchaseNumber": "PO/2026/04/0002",
+        "date": "2026-04-22T00:00:00.000Z",
+        "dueDate": "2026-05-22T00:00:00.000Z",
+        "supplierId": "ce76fc10-ab5e-40df-a88b-1a245429affd",
+        "totalAmount": "625000",
+        "paidAmount": "0",
+        "paymentStatus": "UNPAID",
+        "cashAccountId": null,
+        "notes": null,
+        "journalEntryId": "9eea2e15-c589-4cc2-9dea-c9384ff40463",
+        "createdAt": "2026-10-19T08:10:39.280Z",
+        "updatedAt": "2026-10-19T08:10:39.280Z",
+        "items": [
+          {
+            "id": "a654dd7c-7486-436e-a5e3-83f77e1fdbca",
+            "purchaseInvoiceId": "66b8611a-f863-479d-8df7-e4763f605710",
+            "itemId": "1e83b2f5-fe06-4761-ae11-c61b35c37e0b",
+            "quantity": "5",
+            "unitPrice": "125000",
+            "totalPrice": "625000"
+          }
+        ]
+      }
+    ],
+    "cashTransactions": [
+      {
+        "id": "14761b32-0e96-4cdb-a670-60dcc1d147f2",
+        "transactionNumber": "BKM/2026/04/0001",
+        "date": "2026-04-20T01:00:00.000Z",
+        "type": "IN",
+        "accountId": "e953aa78-697b-416a-9a44-8119d1f8a6b5",
+        "oppositeAccountId": "57035561-224a-41ab-9689-20ed566b22ad",
+        "amount": "2500000",
+        "contactId": null,
+        "recipientOrPayer": "Gereja Doyo Lama",
+        "notes": "Pelunasan sablon kaos perayaan Paskah",
+        "journalEntryId": "4de030e8-c1f0-4498-8d77-0214036ad28e",
+        "createdAt": "2026-10-19T08:00:38.124Z"
+      },
+      {
+        "id": "4ace1cf0-658a-4d30-862d-412f89e169d9",
+        "transactionNumber": "BKK/2026/04/0001",
+        "date": "2026-04-20T01:00:00.000Z",
+        "type": "OUT",
+        "accountId": "e953aa78-697b-416a-9a44-8119d1f8a6b5",
+        "oppositeAccountId": "ccca513f-782c-4a19-b88d-e6bb584b8115",
+        "amount": "450000",
+        "contactId": null,
+        "recipientOrPayer": "PLN Sentani",
+        "notes": "Token listrik workshop 2200VA bulan April 2026",
+        "journalEntryId": "11f310e5-ae7d-4abf-b206-47286e7d9e80",
+        "createdAt": "2026-10-19T08:00:38.186Z"
+      },
+      {
+        "id": "a13518a3-7990-4cfb-a12e-d5e1efd10f29",
+        "transactionNumber": "TRF/2026/04/0001",
+        "date": "2026-04-20T01:00:00.000Z",
+        "type": "TRANSFER",
+        "accountId": "e953aa78-697b-416a-9a44-8119d1f8a6b5",
+        "oppositeAccountId": "7948ef78-b8eb-4631-852c-234e022a51da",
+        "amount": "1000000",
+        "contactId": null,
+        "recipientOrPayer": "Bank BPD Papua Cabang Sentani",
+        "notes": "Penyetoran surplus kas workshop ke rekening bank resmi BUMKam",
+        "journalEntryId": "e2674206-da78-41a8-97d5-8671c37f8993",
+        "createdAt": "2026-10-19T08:00:38.260Z"
+      }
+    ],
+    "journalEntries": [
+      {
+        "id": "556e791b-856d-4689-b3cb-bdd2b19ae407",
+        "entryNumber": "JU/2026/04/0001",
+        "date": "2026-04-15T01:00:00.000Z",
+        "referenceType": "MANUAL",
+        "referenceId": "REF-MODAL-001",
+        "description": "Penyertaan Modal Awal dari Pemerintah Kampung Doyo Lama",
+        "totalDebit": "25000000",
+        "totalCredit": "25000000",
+        "isPosted": true,
+        "createdAt": "2026-10-19T07:19:09.326Z",
+        "updatedAt": "2026-10-19T07:19:09.326Z",
+        "items": [
+          {
+            "id": "3d5383e3-6ec5-4b64-9f01-e03afc0b01ab",
+            "journalEntryId": "556e791b-856d-4689-b3cb-bdd2b19ae407",
+            "accountId": "e953aa78-697b-416a-9a44-8119d1f8a6b5",
+            "debit": "25000000",
+            "credit": "0",
+            "memo": "Kas bertambah di workshop"
+          },
+          {
+            "id": "730e0689-e8cf-419c-a340-381c3f33e3a8",
+            "journalEntryId": "556e791b-856d-4689-b3cb-bdd2b19ae407",
+            "accountId": "a492af1f-2ae1-47fe-bc83-74b0f23e80c9",
+            "debit": "0",
+            "credit": "25000000",
+            "memo": "Penyertaan modal Kampung Doyo Lama"
+          }
+        ]
+      },
+      {
+        "id": "4de030e8-c1f0-4498-8d77-0214036ad28e",
+        "entryNumber": "JU/2026/04/0002",
+        "date": "2026-04-20T01:00:00.000Z",
+        "referenceType": "CASH_IN",
+        "referenceId": "BKM/2026/04/0001",
+        "description": "Penerimaan Kas Workshop [BKM/2026/04/0001]: Pembayaran Sablon Tunai",
+        "totalDebit": "2500000",
+        "totalCredit": "2500000",
+        "isPosted": true,
+        "createdAt": "2026-10-19T08:00:38.089Z",
+        "updatedAt": "2026-10-19T08:00:38.089Z",
+        "items": [
+          {
+            "id": "7f7335bd-d43d-4770-bd5a-63ff6a69a069",
+            "journalEntryId": "4de030e8-c1f0-4498-8d77-0214036ad28e",
+            "accountId": "e953aa78-697b-416a-9a44-8119d1f8a6b5",
+            "debit": "2500000",
+            "credit": "0",
+            "memo": "Kas masuk workshop"
+          },
+          {
+            "id": "d5ec9ca9-b0b0-4d37-b004-94034ffa085c",
+            "journalEntryId": "4de030e8-c1f0-4498-8d77-0214036ad28e",
+            "accountId": "57035561-224a-41ab-9689-20ed566b22ad",
+            "debit": "0",
+            "credit": "2500000",
+            "memo": "Pendapatan jasa sablon"
+          }
+        ]
+      },
+      {
+        "id": "11f310e5-ae7d-4abf-b206-47286e7d9e80",
+        "entryNumber": "JU/2026/04/0003",
+        "date": "2026-04-20T01:00:00.000Z",
+        "referenceType": "CASH_OUT",
+        "referenceId": "BKK/2026/04/0001",
+        "description": "Pengeluaran Kas [BKK/2026/04/0001]: Pembayaran Token Listrik Workshop Sablon",
+        "totalDebit": "450000",
+        "totalCredit": "450000",
+        "isPosted": true,
+        "createdAt": "2026-10-19T08:00:38.161Z",
+        "updatedAt": "2026-10-19T08:00:38.161Z",
+        "items": [
+          {
+            "id": "128882a0-6cb2-414d-9dec-223490b448b2",
+            "journalEntryId": "11f310e5-ae7d-4abf-b206-47286e7d9e80",
+            "accountId": "ccca513f-782c-4a19-b88d-e6bb584b8115",
+            "debit": "450000",
+            "credit": "0",
+            "memo": "Token listrik PLN"
+          },
+          {
+            "id": "1e169ef9-378d-4e9a-bc80-573a75feb3f0",
+            "journalEntryId": "11f310e5-ae7d-4abf-b206-47286e7d9e80",
+            "accountId": "e953aa78-697b-416a-9a44-8119d1f8a6b5",
+            "debit": "0",
+            "credit": "450000",
+            "memo": "Dibayar dari kas workshop"
+          }
+        ]
+      },
+      {
+        "id": "e2674206-da78-41a8-97d5-8671c37f8993",
+        "entryNumber": "JU/2026/04/0004",
+        "date": "2026-04-20T01:00:00.000Z",
+        "referenceType": "TRANSFER",
+        "referenceId": "TRF/2026/04/0001",
+        "description": "Setor Tunai Kas Workshop ke Bank BUMKam [TRF/2026/04/0001]",
+        "totalDebit": "1000000",
+        "totalCredit": "1000000",
+        "isPosted": true,
+        "createdAt": "2026-10-19T08:00:38.230Z",
+        "updatedAt": "2026-10-19T08:00:38.230Z",
+        "items": [
+          {
+            "id": "db7f055a-daa8-4f42-8123-018bfcd740ee",
+            "journalEntryId": "e2674206-da78-41a8-97d5-8671c37f8993",
+            "accountId": "7948ef78-b8eb-4631-852c-234e022a51da",
+            "debit": "1000000",
+            "credit": "0",
+            "memo": "Setoran masuk ke Bank"
+          },
+          {
+            "id": "85f53a27-fefd-48cd-8c3c-c9811df2f5b9",
+            "journalEntryId": "e2674206-da78-41a8-97d5-8671c37f8993",
+            "accountId": "e953aa78-697b-416a-9a44-8119d1f8a6b5",
+            "debit": "0",
+            "credit": "1000000",
+            "memo": "Setoran keluar dari Kas Workshop"
+          }
+        ]
+      },
+      {
+        "id": "40547d45-c1af-4041-b584-27d0c712f80a",
+        "entryNumber": "JU/2026/04/0005",
+        "date": "2026-04-22T00:00:00.000Z",
+        "referenceType": "PURCHASE",
+        "referenceId": "PO/2026/04/0001",
+        "description": "Pembelian 50 pcs Kaos Polos Combed 30s [PO/2026/04/0001] dari Distributor Kaos Polos & Tinta Sablon (Lunas)",
+        "totalDebit": "1900000",
+        "totalCredit": "1900000",
+        "isPosted": true,
+        "createdAt": "2026-10-19T08:10:39.205Z",
+        "updatedAt": "2026-10-19T08:10:39.205Z",
+        "items": [
+          {
+            "id": "1650b139-01fc-49a7-8cb6-1da82042dc18",
+            "journalEntryId": "40547d45-c1af-4041-b584-27d0c712f80a",
+            "accountId": "86ced3cb-76df-45e7-b35a-f74ded4755f9",
+            "debit": "1900000",
+            "credit": "0",
+            "memo": "Persediaan kaos masuk"
+          },
+          {
+            "id": "fd2601d0-a8d0-466a-b35e-e0c9d5f0c248",
+            "journalEntryId": "40547d45-c1af-4041-b584-27d0c712f80a",
+            "accountId": "e953aa78-697b-416a-9a44-8119d1f8a6b5",
+            "debit": "0",
+            "credit": "1900000",
+            "memo": "Dibayar tunai dari kas workshop"
+          }
+        ]
+      },
+      {
+        "id": "9eea2e15-c589-4cc2-9dea-c9384ff40463",
+        "entryNumber": "JU/2026/04/0006",
+        "date": "2026-04-22T00:00:00.000Z",
+        "referenceType": "PURCHASE",
+        "referenceId": "PO/2026/04/0002",
+        "description": "Pembelian Tinta Plastisol [PO/2026/04/0002] dari Distributor Kaos Polos & Tinta Sablon (Tempo)",
+        "totalDebit": "625000",
+        "totalCredit": "625000",
+        "isPosted": true,
+        "createdAt": "2026-10-19T08:10:39.272Z",
+        "updatedAt": "2026-10-19T08:10:39.272Z",
+        "items": [
+          {
+            "id": "0fb722a9-8ed8-4160-9a88-fe3592eaf703",
+            "journalEntryId": "9eea2e15-c589-4cc2-9dea-c9384ff40463",
+            "accountId": "86ced3cb-76df-45e7-b35a-f74ded4755f9",
+            "debit": "625000",
+            "credit": "0",
+            "memo": "Persediaan tinta masuk"
+          },
+          {
+            "id": "a508b0f8-fd46-4d0f-bbe0-ccb2a29eb00d",
+            "journalEntryId": "9eea2e15-c589-4cc2-9dea-c9384ff40463",
+            "accountId": "8193b667-66e0-4bf8-b366-642deee6bbfb",
+            "debit": "0",
+            "credit": "625000",
+            "memo": "Utang usaha ke Distributor Kaos Polos & Tinta Sablon"
+          }
+        ]
+      },
+      {
+        "id": "089b6519-3dfa-4954-9860-8eb5dea00bb5",
+        "entryNumber": "JU/2026/04/0007",
+        "date": "2026-04-22T00:00:00.000Z",
+        "referenceType": "PURCHASE",
+        "referenceId": "PO/2026/04/0003",
+        "description": "Pembelian Bahan [PO/2026/04/0003] dengan DP 40%",
+        "totalDebit": "1000000",
+        "totalCredit": "1000000",
+        "isPosted": true,
+        "createdAt": "2026-10-19T08:10:39.301Z",
+        "updatedAt": "2026-10-19T08:10:39.301Z",
+        "items": [
+          {
+            "id": "454a7bca-90ff-4258-85e1-74513cf38195",
+            "journalEntryId": "089b6519-3dfa-4954-9860-8eb5dea00bb5",
+            "accountId": "86ced3cb-76df-45e7-b35a-f74ded4755f9",
+            "debit": "1000000",
+            "credit": "0",
+            "memo": "Persediaan bahan"
+          },
+          {
+            "id": "2464b2cd-4f84-4c10-8cb7-47e120e6944d",
+            "journalEntryId": "089b6519-3dfa-4954-9860-8eb5dea00bb5",
+            "accountId": "7948ef78-b8eb-4631-852c-234e022a51da",
+            "debit": "0",
+            "credit": "400000",
+            "memo": "Pembayaran DP via Bank BUMKam"
+          },
+          {
+            "id": "98f84e94-516a-417a-8567-da5a47325840",
+            "journalEntryId": "089b6519-3dfa-4954-9860-8eb5dea00bb5",
+            "accountId": "8193b667-66e0-4bf8-b366-642deee6bbfb",
+            "debit": "0",
+            "credit": "600000",
+            "memo": "Sisa utang usaha tempo"
+          }
+        ]
+      },
+      {
+        "id": "f76f2558-bf0e-4683-b7de-20fb7e8c6ee4",
+        "entryNumber": "JU/2026/04/0008",
+        "date": "2026-04-22T00:00:00.000Z",
+        "referenceType": "ADJUSTMENT",
+        "referenceId": "SO/2026/04/0001",
+        "description": "Stock Opname Kurang [SO/2026/04/0001]: 2 pcs Kaos rusak noda tinta",
+        "totalDebit": "76000",
+        "totalCredit": "76000",
+        "isPosted": true,
+        "createdAt": "2026-10-19T08:10:39.319Z",
+        "updatedAt": "2026-10-19T08:10:39.319Z",
+        "items": [
+          {
+            "id": "6ba0073f-a7c1-445f-9b5e-da87e755b9cb",
+            "journalEntryId": "f76f2558-bf0e-4683-b7de-20fb7e8c6ee4",
+            "accountId": "4f792b82-817c-4fd4-8caf-f6e620b1f4ec",
+            "debit": "76000",
+            "credit": "0",
+            "memo": "Beban kerusakan kaos"
+          },
+          {
+            "id": "342a97f0-74c8-4744-b805-997d104be4b6",
+            "journalEntryId": "f76f2558-bf0e-4683-b7de-20fb7e8c6ee4",
+            "accountId": "86ced3cb-76df-45e7-b35a-f74ded4755f9",
+            "debit": "0",
+            "credit": "76000",
+            "memo": "Penurunan persediaan kaos"
+          }
+        ]
+      },
+      {
+        "id": "169af163-5f4f-414c-b52a-9895d8af3910",
+        "entryNumber": "JU/2026/04/0009",
+        "date": "2026-04-25T05:00:00.000Z",
+        "referenceType": "SALES",
+        "referenceId": "INV/2026/04/0001",
+        "description": "Penjualan 12 pcs Kaos Sablon [INV/2026/04/0001] kepada Pelanggan Umum / Eceran Doyo Lama (Lunas)",
+        "totalDebit": "780000",
+        "totalCredit": "780000",
+        "isPosted": true,
+        "createdAt": "2026-10-19T08:20:42.029Z",
+        "updatedAt": "2026-10-19T08:20:42.029Z",
+        "items": [
+          {
+            "id": "e7c52721-c3df-46af-ae51-6bb6187d6b02",
+            "journalEntryId": "169af163-5f4f-414c-b52a-9895d8af3910",
+            "accountId": "e953aa78-697b-416a-9a44-8119d1f8a6b5",
+            "debit": "780000",
+            "credit": "0",
+            "memo": "Penerimaan tunai kas workshop"
+          },
+          {
+            "id": "c0b3cf08-af8f-4298-a3f6-3c1a72d5e514",
+            "journalEntryId": "169af163-5f4f-414c-b52a-9895d8af3910",
+            "accountId": "57035561-224a-41ab-9689-20ed566b22ad",
+            "debit": "0",
+            "credit": "780000",
+            "memo": "Pendapatan jasa sablon"
+          }
+        ]
+      },
+      {
+        "id": "c1084e47-675d-4631-933f-7d5af2049329",
+        "entryNumber": "JU/2026/04/0010",
+        "date": "2026-04-25T05:00:00.000Z",
+        "referenceType": "SALES",
+        "referenceId": "INV/2026/04/0001",
+        "description": "Pengakuan Beban Pokok (HPP) Pemakaian Bahan Kaos untuk Faktur [INV/2026/04/0001]",
+        "totalDebit": "456000",
+        "totalCredit": "456000",
+        "isPosted": true,
+        "createdAt": "2026-10-19T08:20:42.050Z",
+        "updatedAt": "2026-10-19T08:20:42.050Z",
+        "items": [
+          {
+            "id": "9674e852-a952-4b03-a690-827a99543844",
+            "journalEntryId": "c1084e47-675d-4631-933f-7d5af2049329",
+            "accountId": "1dcac22c-7a2c-46d3-ad02-53d316e5dc54",
+            "debit": "456000",
+            "credit": "0",
+            "memo": "HPP pemakaian kaos polos 12 pcs"
+          },
+          {
+            "id": "c5350faa-4d20-48ff-b959-6db901b14eee",
+            "journalEntryId": "c1084e47-675d-4631-933f-7d5af2049329",
+            "accountId": "86ced3cb-76df-45e7-b35a-f74ded4755f9",
+            "debit": "0",
+            "credit": "456000",
+            "memo": "Pengurangan stok persediaan kaos"
+          }
+        ]
+      },
+      {
+        "id": "721b54b0-58d8-42dc-8a33-e076dc7f1c0f",
+        "entryNumber": "JU/2026/04/0011",
+        "date": "2026-04-25T05:00:00.000Z",
+        "referenceType": "SALES",
+        "referenceId": "INV/2026/04/0002",
+        "description": "Pesanan Sablon 24 pcs [INV/2026/04/0002] untuk Pelanggan Umum / Eceran Doyo Lama (DP 800rb)",
+        "totalDebit": "1800000",
+        "totalCredit": "1800000",
+        "isPosted": true,
+        "createdAt": "2026-10-19T08:20:42.087Z",
+        "updatedAt": "2026-10-19T08:20:42.087Z",
+        "items": [
+          {
+            "id": "4688205d-d97e-4683-bb49-27e9d7a077a8",
+            "journalEntryId": "721b54b0-58d8-42dc-8a33-e076dc7f1c0f",
+            "accountId": "7948ef78-b8eb-4631-852c-234e022a51da",
+            "debit": "800000",
+            "credit": "0",
+            "memo": "Penerimaan DP via Bank BUMKam"
+          },
+          {
+            "id": "ac1b02f2-1794-416d-8804-2f082d5a96a0",
+            "journalEntryId": "721b54b0-58d8-42dc-8a33-e076dc7f1c0f",
+            "accountId": "8f7dac3a-dc85-4208-a77b-b2043f6680c1",
+            "debit": "1000000",
+            "credit": "0",
+            "memo": "Sisa piutang pesanan sablon"
+          },
+          {
+            "id": "159cc80a-4172-4cfc-a7b8-c239a13b04b7",
+            "journalEntryId": "721b54b0-58d8-42dc-8a33-e076dc7f1c0f",
+            "accountId": "57035561-224a-41ab-9689-20ed566b22ad",
+            "debit": "0",
+            "credit": "1800000",
+            "memo": "Pendapatan pesanan sablon"
+          }
+        ]
+      },
+      {
+        "id": "33e8e245-d0d4-4bc0-8057-515096ab8486",
+        "entryNumber": "JU/2026/04/0012",
+        "date": "2026-04-25T05:00:00.000Z",
+        "referenceType": "SALES",
+        "referenceId": "INV/2026/04/0002",
+        "description": "Pelunasan Sisa Piutang Faktur [INV/2026/04/0002] dari Pelanggan Umum / Eceran Doyo Lama",
+        "totalDebit": "1000000",
+        "totalCredit": "1000000",
+        "isPosted": true,
+        "createdAt": "2026-10-19T08:20:42.111Z",
+        "updatedAt": "2026-10-19T08:20:42.111Z",
+        "items": [
+          {
+            "id": "cd5ccaf9-7d57-40bd-b57b-b8a7867c7bb3",
+            "journalEntryId": "33e8e245-d0d4-4bc0-8057-515096ab8486",
+            "accountId": "e953aa78-697b-416a-9a44-8119d1f8a6b5",
+            "debit": "1000000",
+            "credit": "0",
+            "memo": "Pelunasan sisa tagihan via kas workshop"
+          },
+          {
+            "id": "956e4eef-985c-498d-b0fe-fd1316514d50",
+            "journalEntryId": "33e8e245-d0d4-4bc0-8057-515096ab8486",
+            "accountId": "8f7dac3a-dc85-4208-a77b-b2043f6680c1",
+            "debit": "0",
+            "credit": "1000000",
+            "memo": "Penghapusan piutang pelanggan"
+          }
+        ]
+      },
+      {
+        "id": "4999a3aa-6b04-4539-a757-d140d6f90701",
+        "entryNumber": "JU/2026/04/0013",
+        "date": "2026-04-30T14:59:59.000Z",
+        "referenceType": "DEPRECIATION",
+        "referenceId": "AST-0001-2026-04",
+        "description": "Penyusutan Bulanan Mesin [AST-0001]: Mesin Heat Press 40x60 High Pressure Periode 4/2026",
+        "totalDebit": "150000",
+        "totalCredit": "150000",
+        "isPosted": true,
+        "createdAt": "2026-10-19T08:27:35.276Z",
+        "updatedAt": "2026-10-19T08:27:35.276Z",
+        "items": [
+          {
+            "id": "e0374b2f-9b5e-4c0f-aaf2-ada6f8f3a6d5",
+            "journalEntryId": "4999a3aa-6b04-4539-a757-d140d6f90701",
+            "accountId": "856b172f-4b1e-41db-855a-ae175b2b1f4e",
+            "debit": "150000",
+            "credit": "0",
+            "memo": "Beban penyusutan Mesin Heat Press 40x60 High Pressure"
+          },
+          {
+            "id": "a6fad846-c47f-4740-be64-d25dd07301f3",
+            "journalEntryId": "4999a3aa-6b04-4539-a757-d140d6f90701",
+            "accountId": "632659bb-8020-4a7a-84e8-1efb2e5c43dc",
+            "debit": "0",
+            "credit": "150000",
+            "memo": "Akumulasi penyusutan Mesin Heat Press 40x60 High Pressure"
+          }
+        ]
+      }
+    ],
+    "inventoryTransactions": [
+      {
+        "id": "b380f388-b399-428d-8554-7c512d072ab9",
+        "date": "2026-04-22T00:00:00.000Z",
+        "itemId": "cc1f190d-c035-44d5-9055-ae816e9764dc",
+        "type": "PURCHASE_IN",
+        "quantity": "50",
+        "unitCost": "38000",
+        "totalCost": "1900000",
+        "referenceType": "PURCHASE",
+        "referenceId": "PO/2026/04/0001",
+        "notes": "Restock bahan kaos polos dari Distributor Kaos Polos & Tinta Sablon",
+        "createdAt": "2026-10-19T08:10:39.247Z"
+      },
+      {
+        "id": "bb4107f4-193d-45b1-bc71-2cb78dd9261e",
+        "date": "2026-04-22T00:00:00.000Z",
+        "itemId": "cc1f190d-c035-44d5-9055-ae816e9764dc",
+        "type": "OPNAME_ADJUSTMENT",
+        "quantity": "-2",
+        "unitCost": "38000",
+        "totalCost": "76000",
+        "referenceType": "OPNAME",
+        "referenceId": "SO/2026/04/0001",
+        "notes": "2 pcs kaos cacat noda tinta sablon",
+        "createdAt": "2026-10-19T08:10:39.326Z"
+      },
+      {
+        "id": "a804adbb-eb65-43f1-8ca5-7ebf7fa54f1b",
+        "date": "2026-04-25T05:00:00.000Z",
+        "itemId": "cc1f190d-c035-44d5-9055-ae816e9764dc",
+        "type": "SALES_OUT",
+        "quantity": "-12",
+        "unitCost": "38000",
+        "totalCost": "456000",
+        "referenceType": "SALES",
+        "referenceId": "INV/2026/04/0001",
+        "notes": "Pengeluaran bahan pesanan INV/2026/04/0001 (Pelanggan Umum / Eceran Doyo Lama)",
+        "createdAt": "2026-10-19T08:20:42.067Z"
+      }
+    ],
+    "profitSharingHistories": [],
+    "auditLogs": []
+  }
+}

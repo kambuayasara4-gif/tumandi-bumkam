@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #f8fafc;
+    --foreground: #0f172a;
+    --sidebar-bg: #0f172a;
+    --sidebar-hover: #1e293b;
+    --sidebar-text: #e2e8f0;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+}
+
+/* Custom Financial UI Components */
+.card-financial {
+  @apply bg-white rounded-xl border border-slate-200/80 shadow-sm p-6;
+}
+
+.table-financial {
+  @apply w-full text-left border-collapse text-sm;
+}
+
+.table-financial th {
+  @apply bg-slate-100/80 text-slate-700 font-semibold px-4 py-3 border-b border-slate-200 text-xs tracking-wider uppercase;
+}
+
+.table-financial td {
+  @apply px-4 py-3 border-b border-slate-100 text-slate-700;
+}
+
+.table-financial tr:hover td {
+  @apply bg-slate-50/70;
+}
+
+.badge-debit {
+  @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-emerald-100 text-emerald-800;
+}
+
+.badge-credit {
+  @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800;
+}
+
+.badge-warning {
+  @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-amber-100 text-amber-800;
+}
+
+.badge-danger {
+  @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-rose-100 text-rose-800;
+}

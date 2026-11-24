@@ -1,0 +1,417 @@
+// Prisma Schema untuk TUMANDI (Tungkuwiri Mandiri Digital)
+// Sistem Informasi Akuntansi BUMKam Tungkuwiri Mandiri, Kampung Doyo Lama
+// Kompatibel dengan SQLite (tahap awal) dan mudah dimigrasi ke PostgreSQL
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ----------------------------------------------------
+// 1. PENGGUNA & KONFIGURASI SISTEM
+// ----------------------------------------------------
+
+model User {
+  id           String     @id @default(uuid())
+  username     String     @unique
+  passwordHash String
+  fullName     String
+  role         String     @default("ADMIN") // ADMIN
+  isActive     Boolean    @default(true)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  auditLogs    AuditLog[]
+
+  @@map("users")
+}
+
+model Setting {
+  id                      Int       @id @default(1)
+  bumkamName              String    @default("BUMKam Tungkuwiri Mandiri")
+  villageName             String    @default("Kampung Doyo Lama")
+  districtName            String    @default("Distrik Waibu")
+  regencyName             String    @default("Kabupaten Jayapura")
+  phone                   String?   @default("")
+  email                   String?   @default("")
+  address                 String?   @default("Kampung Doyo Lama, Distrik Waibu, Kab. Jayapura, Papua")
+  businessType            String    @default("Pencetakan Baju Kaos (Sablon) & Konveksi")
+  establishedDate         DateTime? // April 2026
+  
+  // Pengaturan Fleksibel Pembagian Hasil Usaha (PADKam, Cadangan, Jasa Pengurus, Sosial)
+  // Aturan: Total persentase harus tepat 100% sebelum disimpan
+  profitSharingActive     Boolean   @default(true)
+  padkamPercent           Decimal   @default(40.00) // Pendapatan Asli Desa/Kampung
+  reserveFundPercent      Decimal   @default(30.00) // Cadangan Modal
+  managementBonusPercent  Decimal   @default(20.00) // Jasa Pengurus & Karyawan
+  socialFundPercent       Decimal   @default(10.00) // Dana Sosial & Pendidikan Kampung
+  
+  // Pengaturan Akuntansi
+  fiscalYear              Int       @default(2026)
+  lockDate                DateTime? // Batas tanggal tutup buku untuk mengunci audit trail
+  
+  updatedAt               DateTime  @updatedAt
+
+  @@map("settings")
+}
+
+// ----------------------------------------------------
+// 2. BAGAN AKUN STANDAR (CHART OF ACCOUNTS - SAK EMKM)
+// ----------------------------------------------------
+
+model Account {
+  id                   String        @id @default(uuid())
+  code                 String        @unique // Contoh: "1-1100", "4-1000"
+  name                 String        // Contoh: "Kas Operasional", "Pendapatan Jasa Sablon"
+  category             String        // ASSET, LIABILITY, EQUITY, REVENUE, EXPENSE
+  subCategory          String        // KAS_BANK, PIUTANG, PERSEDIAAN, ASET_TETAP, dll.
+  normalBalance        String        // DEBIT, CREDIT
+  isActive             Boolean       @default(true)
+  isHeader             Boolean       @default(false)
+  parentId             String?
+  parent               Account?      @relation("AccountHierarchy", fields: [parentId], references: [id])
+  children             Account[]     @relation("AccountHierarchy")
+  createdAt            DateTime      @default(now())
+  updatedAt            DateTime      @updatedAt
+
+  journalItems         JournalItem[]
+  cashBankPrimary      CashBankTransaction[] @relation("PrimaryCashAccount")
+  cashBankOpposite     CashBankTransaction[] @relation("OppositeCashAccount")
+  fixedAssetAccounts   FixedAsset[]  @relation("AssetAccount")
+  depreciationAccounts FixedAsset[]  @relation("DepreciationAccount")
+  expenseAccounts      FixedAsset[]  @relation("ExpenseAccount")
+  salesAccounts        SalesInvoice[] @relation("SalesCashAccount")
+  purchaseAccounts     PurchaseInvoice[] @relation("PurchaseCashAccount")
+
+  @@index([category])
+  @@index([subCategory])
+  @@map("accounts")
+}
+
+// ----------------------------------------------------
+// 3. KONTAK (PELANGGAN & PEMASOK)
+// ----------------------------------------------------
+
+model Contact {
+  id                   String         @id @default(uuid())
+  code                 String         @unique // PLG-0001, SPL-0001
+  name                 String
+  type                 String         // CUSTOMER, SUPPLIER, BOTH
+  phone                String?
+  email                String?
+  address              String?
+  notes                String?
+  isActive             Boolean        @default(true)
+  createdAt            DateTime       @default(now())
+  updatedAt            DateTime       @updatedAt
+
+  salesInvoices        SalesInvoice[]
+  purchaseInvoices     PurchaseInvoice[]
+  cashTransactions     CashBankTransaction[]
+
+  @@map("contacts")
+}
+
+// ----------------------------------------------------
+// 4. MASTER BARANG, BAHAN BAKU SABLON, & STOK
+// ----------------------------------------------------
+
+model ItemCategory {
+  id        String   @id @default(uuid())
+  name      String   @unique // Contoh: "Kaos Polos", "Tinta & Kimia", "Bahan Sablon DTF", "Jasa Sablon"
+  type      String   // RAW_MATERIAL, FINISHED_GOOD, SUPPLIES, SERVICE
+  createdAt DateTime @default(now())
+
+  items     Item[]
+
+  @@map("item_categories")
+}
+
+model Item {
+  id                   String                 @id @default(uuid())
+  code                 String                 @unique // BB-KP-01, BRG-01, JS-01
+  name                 String                 // Misal: "Kaos Polos Combed 30s Hitam L"
+  type                 String                 // RAW_MATERIAL, FINISHED_GOOD, SUPPLIES, SERVICE
+  categoryId           String
+  category             ItemCategory           @relation(fields: [categoryId], references: [id])
+  unit                 String                 @default("Pcs") // Pcs, Kg, Liter, Roll, Lembar
+  costPrice            Decimal                @default(0.00)  // Biaya HPP Rata-Rata Beli
+  sellingPrice         Decimal                @default(0.00)  // Harga Jual Standar
+  currentStock         Decimal                @default(0.00)  // Jumlah Stok Tersedia
+  minStockAlert        Decimal                @default(5.00)  // Peringatan Stok Kritis
+  isActive             Boolean                @default(true)
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @updatedAt
+
+  salesItems           SalesInvoiceItem[]
+  purchaseItems        PurchaseInvoiceItem[]
+  inventoryTransactions InventoryTransaction[]
+
+  @@index([type])
+  @@map("items")
+}
+
+model InventoryTransaction {
+  id             String    @id @default(uuid())
+  date           DateTime  @default(now())
+  itemId         String
+  item           Item      @relation(fields: [itemId], references: [id])
+  type           String    // PURCHASE_IN, SALES_OUT, PRODUCTION_IN, USAGE_OUT, OPNAME_ADJUSTMENT
+  quantity       Decimal   // Positif untuk penambahan stok, negatif untuk pengurangan
+  unitCost       Decimal   // Harga per satuan
+  totalCost      Decimal   // Nilai total moneter mutasi
+  referenceType  String?   // PURCHASE, SALES, OPNAME, MANUAL
+  referenceId    String?   // ID faktur pembelian/penjualan terkait
+  notes          String?
+  createdAt      DateTime  @default(now())
+
+  @@index([itemId, date])
+  @@map("inventory_transactions")
+}
+
+// ----------------------------------------------------
+// 5. TRANSAKSI PENJUALAN (SALES) & PESANAN SABLON
+// ----------------------------------------------------
+
+model SalesInvoice {
+  id               String             @id @default(uuid())
+  invoiceNumber    String             @unique // INV/2026/04/0001
+  date             DateTime           @default(now())
+  dueDate          DateTime?
+  customerId       String
+  customer         Contact            @relation(fields: [customerId], references: [id])
+  subtotal         Decimal            @default(0.00)
+  discountAmount   Decimal            @default(0.00)
+  grandTotal       Decimal            @default(0.00)
+  paidAmount       Decimal            @default(0.00) // Nilai DP / pembayaran yang telah diterima
+  paymentStatus    String             @default("UNPAID") // UNPAID, PARTIAL, PAID
+  cashAccountId    String?            // Akun Kas/Bank penampung pembayaran
+  cashAccount      Account?           @relation("SalesCashAccount", fields: [cashAccountId], references: [id])
+  notes            String?
+  journalEntryId   String?            @unique
+  journalEntry     JournalEntry?      @relation(fields: [journalEntryId], references: [id])
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+
+  items            SalesInvoiceItem[]
+
+  @@index([date])
+  @@index([customerId])
+  @@map("sales_invoices")
+}
+
+model SalesInvoiceItem {
+  id             String       @id @default(uuid())
+  salesInvoiceId String
+  salesInvoice   SalesInvoice @relation(fields: [salesInvoiceId], references: [id], onDelete: Cascade)
+  itemId         String
+  item           Item         @relation(fields: [itemId], references: [id])
+  description    String?      // Rincian sablon (misal: "Sablon DTF Dada Kiri + Punggung")
+  quantity       Decimal      @default(1.00)
+  unitPrice      Decimal      @default(0.00)
+  costPrice      Decimal      @default(0.00) // HPP saat transaksi terjadi untuk kalkulasi laba kotor
+  totalPrice     Decimal      @default(0.00)
+
+  @@map("sales_invoice_items")
+}
+
+// ----------------------------------------------------
+// 6. TRANSAKSI PEMBELIAN (PURCHASE) BAHAN SABLON
+// ----------------------------------------------------
+
+model PurchaseInvoice {
+  id               String                @id @default(uuid())
+  purchaseNumber   String                @unique // PO/2026/04/0001
+  date             DateTime              @default(now())
+  dueDate          DateTime?
+  supplierId       String
+  supplier         Contact               @relation(fields: [supplierId], references: [id])
+  totalAmount      Decimal               @default(0.00)
+  paidAmount       Decimal               @default(0.00)
+  paymentStatus    String                @default("UNPAID") // UNPAID, PARTIAL, PAID
+  cashAccountId    String?
+  cashAccount      Account?              @relation("PurchaseCashAccount", fields: [cashAccountId], references: [id])
+  notes            String?
+  journalEntryId   String?               @unique
+  journalEntry     JournalEntry?         @relation(fields: [journalEntryId], references: [id])
+  createdAt        DateTime              @default(now())
+  updatedAt        DateTime              @updatedAt
+
+  items            PurchaseInvoiceItem[]
+
+  @@index([date])
+  @@index([supplierId])
+  @@map("purchase_invoices")
+}
+
+model PurchaseInvoiceItem {
+  id                String          @id @default(uuid())
+  purchaseInvoiceId String
+  purchaseInvoice   PurchaseInvoice @relation(fields: [purchaseInvoiceId], references: [id], onDelete: Cascade)
+  itemId            String
+  item              Item            @relation(fields: [itemId], references: [id])
+  quantity          Decimal         @default(1.00)
+  unitPrice         Decimal         @default(0.00)
+  totalPrice        Decimal         @default(0.00)
+
+  @@map("purchase_invoice_items")
+}
+
+// ----------------------------------------------------
+// 7. KAS & BANK (PENERIMAAN, PENGELUARAN, TRANSFER)
+// ----------------------------------------------------
+
+model CashBankTransaction {
+  id                 String        @id @default(uuid())
+  transactionNumber  String        @unique // BKM/2026/04/0001, BKK/2026/04/0001
+  date               DateTime      @default(now())
+  type               String        // IN (Masuk), OUT (Keluar), TRANSFER
+  accountId          String        // Akun Kas/Bank utama
+  account            Account       @relation("PrimaryCashAccount", fields: [accountId], references: [id])
+  oppositeAccountId  String        // Akun lawan (Beban, Pendapatan, atau Akun Kas/Bank tujuan)
+  oppositeAccount    Account       @relation("OppositeCashAccount", fields: [oppositeAccountId], references: [id])
+  amount             Decimal       @default(0.00)
+  contactId          String?
+  contact            Contact?      @relation(fields: [contactId], references: [id])
+  recipientOrPayer   String?       // Pihak penerima/pemberi dana
+  notes              String?
+  journalEntryId     String?       @unique
+  journalEntry       JournalEntry? @relation(fields: [journalEntryId], references: [id])
+  createdAt          DateTime      @default(now())
+
+  @@index([date])
+  @@map("cash_bank_transactions")
+}
+
+// ----------------------------------------------------
+// 8. ASET TETAP & DEPRESIASI OTOMATIS
+// ----------------------------------------------------
+
+model FixedAsset {
+  id                      String              @id @default(uuid())
+  code                    String              @unique // AST-0001
+  name                    String              // Mesin Heat Press 40x60, Printer DTF, Meja Sablon
+  acquisitionDate         DateTime
+  acquisitionCost         Decimal             @default(0.00) // Harga Perolehan
+  salvageValue            Decimal             @default(0.00) // Nilai Residu / Sisa
+  usefulLifeMonths        Int                 // Masa Manfaat dalam bulan (contoh: 48 bulan = 4 tahun)
+  monthlyDepreciation     Decimal             @default(0.00) // Beban Penyusutan Bulanan (Metode Garis Lurus)
+  accumulatedDepreciation Decimal             @default(0.00) // Total Akumulasi Penyusutan Berjalan
+  assetAccountId          String              // Akun Aset Tetap (1-2100)
+  assetAccount            Account             @relation("AssetAccount", fields: [assetAccountId], references: [id])
+  depreciationAccountId   String              // Akun Akumulasi Penyusutan (1-2110)
+  depreciationAccount     Account             @relation("DepreciationAccount", fields: [depreciationAccountId], references: [id])
+  expenseAccountId        String              // Akun Beban Penyusutan (6-5000)
+  expenseAccount          Account             @relation("ExpenseAccount", fields: [expenseAccountId], references: [id])
+  status                  String              @default("ACTIVE") // ACTIVE, FULLY_DEPRECIATED, DISPOSED
+  notes                   String?
+  createdAt               DateTime            @default(now())
+  updatedAt               DateTime            @updatedAt
+
+  depreciations           AssetDepreciation[]
+
+  @@map("fixed_assets")
+}
+
+model AssetDepreciation {
+  id             String        @id @default(uuid())
+  fixedAssetId   String
+  fixedAsset     FixedAsset    @relation(fields: [fixedAssetId], references: [id], onDelete: Cascade)
+  periodMonth    Int           // 1 - 12
+  periodYear     Int           // Misal 2026
+  amount         Decimal       @default(0.00)
+  journalEntryId String?       @unique
+  journalEntry   JournalEntry? @relation(fields: [journalEntryId], references: [id])
+  createdAt      DateTime      @default(now())
+
+  @@unique([fixedAssetId, periodMonth, periodYear])
+  @@map("asset_depreciations")
+}
+
+// ----------------------------------------------------
+// 9. RIWAYAT PEMBAGIAN HASIL USAHA (BAGI HASIL PADKAM)
+// ----------------------------------------------------
+
+model ProfitSharingHistory {
+  id                      String        @id @default(uuid())
+  fiscalYear              Int           @unique
+  netProfit               Decimal       // Total Laba Bersih Tahun Terkait
+  padkamPercent           Decimal
+  padkamAmount            Decimal       // Dana yang disetor ke Kampung Doyo Lama
+  reserveFundPercent      Decimal
+  reserveFundAmount       Decimal       // Dana Cadangan Modal BUMKam
+  managementBonusPercent  Decimal
+  managementBonusAmount   Decimal       // Insentif Pengurus & Pengawas
+  socialFundPercent       Decimal
+  socialFundAmount        Decimal       // Dana Sosial & Pendidikan Kampung
+  journalEntryId          String?       @unique
+  journalEntry            JournalEntry? @relation(fields: [journalEntryId], references: [id])
+  approvedDate            DateTime      @default(now())
+  notes                   String?
+
+  @@map("profit_sharing_histories")
+}
+
+// ----------------------------------------------------
+// 10. ENGINE JURNAL DOUBLE-ENTRY & BUKU BESAR
+// ----------------------------------------------------
+
+model JournalEntry {
+  id                   String                 @id @default(uuid())
+  entryNumber          String                 @unique // JU/2026/04/0001
+  date                 DateTime               @default(now())
+  referenceType        String                 // SALES, PURCHASE, CASH_IN, CASH_OUT, TRANSFER, DEPRECIATION, PROFIT_SHARING, ADJUSTMENT, CLOSING, MANUAL
+  referenceId          String?
+  description          String
+  totalDebit           Decimal                @default(0.00)
+  totalCredit          Decimal                @default(0.00)
+  isPosted             Boolean                @default(true)
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @updatedAt
+
+  items                JournalItem[]
+  salesInvoice         SalesInvoice?
+  purchaseInvoice      PurchaseInvoice?
+  cashBankTransaction  CashBankTransaction?
+  assetDepreciation    AssetDepreciation?
+  profitSharing        ProfitSharingHistory?
+
+  @@index([date])
+  @@index([referenceType])
+  @@map("journal_entries")
+}
+
+model JournalItem {
+  id             String       @id @default(uuid())
+  journalEntryId String
+  journalEntry   JournalEntry @relation(fields: [journalEntryId], references: [id], onDelete: Cascade)
+  accountId      String
+  account        Account      @relation(fields: [accountId], references: [id])
+  debit          Decimal      @default(0.00)
+  credit         Decimal      @default(0.00)
+  memo           String?
+
+  @@index([accountId])
+  @@map("journal_items")
+}
+
+// ----------------------------------------------------
+// 11. AUDIT TRAIL LOG
+// ----------------------------------------------------
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id])
+  action     String   // CREATE, UPDATE, DELETE, POST, BACKUP, RESTORE
+  entityType String   // SALES, PURCHASE, ACCOUNT, SETTING, dll.
+  entityId   String?
+  details    String?  // JSON atau teks ringkasan perubahan
+  createdAt  DateTime @default(now())
+
+  @@index([createdAt])
+  @@map("audit_logs")
+}
