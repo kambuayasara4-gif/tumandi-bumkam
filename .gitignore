@@ -20,6 +20,7 @@ prisma/dev.db.*
 
 # Local Executables & Tunnels
 bin/
+*.bat
 
 # Logs
 *.log
