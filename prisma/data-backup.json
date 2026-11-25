@@ -18,12 +18,12 @@
       {
         "id": "522fc3af-807e-47e8-8f00-0b878e848e0c",
         "username": "admin",
-        "passwordHash": "$2a$10$spKhUEhJMiKTMQTDy1A8XedYQkKd8aKqNa7lrqw98OZ2UoKXR6q4W",
+        "passwordHash": "$2a$10$zeYSxWFZ2V3AWW0OqkWm1uDXdNXXp03zlXxw9getGZKUm7HJF7ifG",
         "fullName": "Pengelola BUMKam Tungkuwiri Mandiri",
         "role": "ADMIN",
         "isActive": true,
         "createdAt": "2026-10-19T07:16:36.071Z",
-        "updatedAt": "2026-10-19T07:16:36.071Z"
+        "updatedAt": "2026-11-25T08:02:50.101Z"
       }
     ],
     "settings": [
