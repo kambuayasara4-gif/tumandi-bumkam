@@ -113,7 +113,7 @@ async function runTests() {
     assert(kasAccount !== null && modalAccount !== null, 'Akun Kas (1-1100) dan Modal (3-1000) harus ditemukan di database');
 
     // Skenario 1: Simpan Jurnal Setoran Modal Awal Seimbang Rp 25.000.000
-    const entryNum1 = generateTransactionNumber('JU', 1, fixedDate);
+    const entryNum1 = 'JU/TEST/' + Date.now();
     const createdJournal = await postJournalEntry(prisma, {
       entryNumber: entryNum1,
       date: fixedDate,

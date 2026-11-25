@@ -70,37 +70,33 @@ export async function POST(request) {
       },
     ];
 
-    const result = await prisma.$transaction(async (tx) => {
-      // 1. Posting Jurnal
-      const journalEntry = await postJournalEntry(tx, {
-        entryNumber: journalNumber,
-        date: txDate,
-        referenceType: 'SALES',
-        referenceId: invoice.invoiceNumber,
-        description: journalDesc,
-        items: journalItems,
-      });
+    // 1. Posting Jurnal
+    const journalEntry = await postJournalEntry(prisma, {
+      entryNumber: journalNumber,
+      date: txDate,
+      referenceType: 'SALES',
+      referenceId: invoice.invoiceNumber,
+      description: journalDesc,
+      items: journalItems,
+    });
 
-      // 2. Update Faktur Penjualan
-      const newPaid = oldPaid.plus(payAmount);
-      const newStatus = newPaid.greaterThanOrEqualTo(grandTotal) ? 'PAID' : 'PARTIAL';
+    // 2. Update Faktur Penjualan
+    const newPaid = oldPaid.plus(payAmount);
+    const newStatus = newPaid.greaterThanOrEqualTo(grandTotal) ? 'PAID' : 'PARTIAL';
 
-      const updatedInvoice = await tx.salesInvoice.update({
-        where: { id: invoice.id },
-        data: {
-          paidAmount: newPaid.toString(),
-          paymentStatus: newStatus,
-        },
-      });
-
-      return { updatedInvoice, journalEntry };
+    const updatedInvoice = await prisma.salesInvoice.update({
+      where: { id: invoice.id },
+      data: {
+        paidAmount: newPaid.toString(),
+        paymentStatus: newStatus,
+      },
     });
 
     return NextResponse.json({
       success: true,
       message: `Pembayaran piutang Rp ${payAmount.toFixed(2)} untuk faktur ${invoice.invoiceNumber} berhasil diposting.`,
-      invoice: result.updatedInvoice,
-      journalEntry: result.journalEntry,
+      invoice: updatedInvoice,
+      journalEntry: journalEntry,
     });
   } catch (error) {
     console.error('Error posting receivable payment:', error);

@@ -83,68 +83,63 @@ export async function POST(request) {
       expAccId = defExp ? defExp.id : assetAccountId;
     }
 
-    // Simpan ke database dengan atomic transaction jika ada pembelian kas
-    const result = await prisma.$transaction(async (tx) => {
-      // Jika dibeli menggunakan kas/bank saat ini, posting jurnal perolehan aset
-      if (paymentMethod === 'CASH_PURCHASE' && cashAccountId) {
-        const cashAccount = await tx.account.findUnique({ where: { id: cashAccountId } });
-        const jCount = await tx.journalEntry.count();
-        const jNumber = generateTransactionNumber('JU', jCount + 1, txDate);
+    // Jika dibeli menggunakan kas/bank saat ini, posting jurnal perolehan aset
+    if (paymentMethod === 'CASH_PURCHASE' && cashAccountId) {
+      const cashAccount = await prisma.account.findUnique({ where: { id: cashAccountId } });
+      const jCount = await prisma.journalEntry.count();
+      const jNumber = generateTransactionNumber('JU', jCount + 1, txDate);
 
-        await postJournalEntry(tx, {
-          entryNumber: jNumber,
-          date: txDate,
-          referenceType: 'MANUAL',
-          referenceId: assetCode,
-          description: `Perolehan Aset Tetap [${assetCode}]: ${name} dibayar via ${cashAccount?.name}`,
-          items: [
-            {
-              accountId: assetAccountId,
-              debit: costDec.toString(),
-              credit: '0.00',
-              memo: `Perolehan aset ${name}`,
-            },
-            {
-              accountId: cashAccountId,
-              debit: '0.00',
-              credit: costDec.toString(),
-              memo: `Pengeluaran kas perolehan aset`,
-            },
-          ],
-        });
-      }
-
-      // Buat data aset tetap
-      const createdAsset = await tx.fixedAsset.create({
-        data: {
-          code: assetCode,
-          name: name.trim(),
-          acquisitionDate: txDate,
-          acquisitionCost: costDec.toString(),
-          salvageValue: salvageDec.toString(),
-          usefulLifeMonths: monthsInt,
-          monthlyDepreciation: monthlyDepDec.toString(),
-          accumulatedDepreciation: '0.00',
-          assetAccountId,
-          depreciationAccountId: depAccId,
-          expenseAccountId: expAccId,
-          status: 'ACTIVE',
-          notes: notes?.trim() || null,
-        },
-        include: {
-          assetAccount: true,
-          depreciationAccount: true,
-          expenseAccount: true,
-        },
+      await postJournalEntry(prisma, {
+        entryNumber: jNumber,
+        date: txDate,
+        referenceType: 'MANUAL',
+        referenceId: assetCode,
+        description: `Perolehan Aset Tetap [${assetCode}]: ${name} dibayar via ${cashAccount?.name}`,
+        items: [
+          {
+            accountId: assetAccountId,
+            debit: costDec.toString(),
+            credit: '0.00',
+            memo: `Perolehan aset ${name}`,
+          },
+          {
+            accountId: cashAccountId,
+            debit: '0.00',
+            credit: costDec.toString(),
+            memo: `Pengeluaran kas perolehan aset`,
+          },
+        ],
       });
+    }
 
-      return createdAsset;
+    // Buat data aset tetap
+    const createdAsset = await prisma.fixedAsset.create({
+      data: {
+        code: assetCode,
+        name: name.trim(),
+        acquisitionDate: txDate,
+        acquisitionCost: costDec.toString(),
+        salvageValue: salvageDec.toString(),
+        usefulLifeMonths: monthsInt,
+        monthlyDepreciation: monthlyDepDec.toString(),
+        accumulatedDepreciation: '0.00',
+        assetAccountId,
+        depreciationAccountId: depAccId,
+        expenseAccountId: expAccId,
+        status: 'ACTIVE',
+        notes: notes?.trim() || null,
+      },
+      include: {
+        assetAccount: true,
+        depreciationAccount: true,
+        expenseAccount: true,
+      },
     });
 
     return NextResponse.json({
       success: true,
       message: `Aset Tetap ${assetCode} (${name}) berhasil didaftarkan. Beban penyusutan bulanan: Rp ${monthlyDepDec.toFixed(2)}/bulan.`,
-      asset: result,
+      asset: createdAsset,
     });
   } catch (error) {
     console.error('Error create asset:', error);

@@ -170,94 +170,90 @@ export async function POST(request) {
       });
     }
 
-    // 5. Eksekusi Atomic Transaction Database (Prisma)
-    const result = await prisma.$transaction(async (tx) => {
-      // A. Posting Jurnal Double-Entry
-      const journalEntry = await postJournalEntry(tx, {
-        entryNumber: journalNumber,
-        date: txDate,
-        referenceType: 'PURCHASE',
-        referenceId: purchaseNumber,
-        description: `Pembelian Bahan Sablon [${purchaseNumber}] dari ${supplier.name} (Status: ${paymentStatus})`,
-        items: journalItems,
-      });
+    // 5. Eksekusi Posting Pembelian
+    // A. Posting Jurnal Double-Entry
+    const journalEntry = await postJournalEntry(prisma, {
+      entryNumber: journalNumber,
+      date: txDate,
+      referenceType: 'PURCHASE',
+      referenceId: purchaseNumber,
+      description: `Pembelian Bahan Sablon [${purchaseNumber}] dari ${supplier.name} (Status: ${paymentStatus})`,
+      items: journalItems,
+    });
 
-      // B. Buat Purchase Invoice Header
-      const purchaseInvoice = await tx.purchaseInvoice.create({
+    // B. Buat Purchase Invoice Header
+    const purchaseInvoice = await prisma.purchaseInvoice.create({
+      data: {
+        purchaseNumber,
+        date: txDate,
+        dueDate: txDueDate,
+        supplierId: supplier.id,
+        totalAmount: totalAmountDec.toString(),
+        paidAmount: paidDec.toString(),
+        paymentStatus,
+        cashAccountId: cashAccount ? cashAccount.id : null,
+        notes: notes?.trim() || null,
+        journalEntryId: journalEntry.id,
+      },
+    });
+
+    // C. Simpan Rincian Item, Mutasi Kartu Stok, dan Perbarui Nilai HPP Rata-Rata
+    for (const line of validatedItems) {
+      await prisma.purchaseInvoiceItem.create({
         data: {
-          purchaseNumber,
-          date: txDate,
-          dueDate: txDueDate,
-          supplierId: supplier.id,
-          totalAmount: totalAmountDec.toString(),
-          paidAmount: paidDec.toString(),
-          paymentStatus,
-          cashAccountId: cashAccount ? cashAccount.id : null,
-          notes: notes?.trim() || null,
-          journalEntryId: journalEntry.id,
+          purchaseInvoiceId: purchaseInvoice.id,
+          itemId: line.itemId,
+          quantity: line.quantity.toString(),
+          unitPrice: line.unitPrice.toString(),
+          totalPrice: line.totalPrice.toString(),
         },
       });
 
-      // C. Simpan Rincian Item, Mutasi Kartu Stok, dan Perbarui Nilai HPP Rata-Rata
-      for (const line of validatedItems) {
-        await tx.purchaseInvoiceItem.create({
-          data: {
-            purchaseInvoiceId: purchaseInvoice.id,
-            itemId: line.itemId,
-            quantity: line.quantity.toString(),
-            unitPrice: line.unitPrice.toString(),
-            totalPrice: line.totalPrice.toString(),
-          },
-        });
+      // Catat Kartu Stok (Inventory Transaction)
+      await prisma.inventoryTransaction.create({
+        data: {
+          date: txDate,
+          itemId: line.itemId,
+          type: 'PURCHASE_IN',
+          quantity: line.quantity.toString(),
+          unitCost: line.unitPrice.toString(),
+          totalCost: line.totalPrice.toString(),
+          referenceType: 'PURCHASE',
+          referenceId: purchaseNumber,
+          notes: `Masuk dari faktur pembelian ${purchaseNumber}`,
+        },
+      });
 
-        // Catat Kartu Stok (Inventory Transaction)
-        await tx.inventoryTransaction.create({
-          data: {
-            date: txDate,
-            itemId: line.itemId,
-            type: 'PURCHASE_IN',
-            quantity: line.quantity.toString(),
-            unitCost: line.unitPrice.toString(),
-            totalCost: line.totalPrice.toString(),
-            referenceType: 'PURCHASE',
-            referenceId: purchaseNumber,
-            notes: `Masuk dari faktur pembelian ${purchaseNumber}`,
-          },
-        });
+      // Update Kuantitas Stok & HPP Rata-Rata Bergerak (Moving Average)
+      const currentItem = await prisma.item.findUnique({ where: { id: line.itemId } });
+      if (currentItem) {
+        const oldStock = new Decimal(currentItem.currentStock.toString());
+        const oldCost = new Decimal(currentItem.costPrice.toString());
+        const newStock = oldStock.plus(line.quantity);
 
-        // Update Kuantitas Stok & HPP Rata-Rata Bergerak (Moving Average)
-        const currentItem = await tx.item.findUnique({ where: { id: line.itemId } });
-        if (currentItem) {
-          const oldStock = new Decimal(currentItem.currentStock.toString());
-          const oldCost = new Decimal(currentItem.costPrice.toString());
-          const newStock = oldStock.plus(line.quantity);
-
-          let newAvgCost = line.unitPrice;
-          if (newStock.greaterThan(0)) {
-            // (oldStock * oldCost + newQty * newPrice) / newStock
-            const oldTotalValue = oldStock.times(oldCost);
-            const newTotalValue = oldTotalValue.plus(line.totalPrice);
-            newAvgCost = newTotalValue.dividedBy(newStock);
-          }
-
-          await tx.item.update({
-            where: { id: line.itemId },
-            data: {
-              currentStock: newStock.toString(),
-              costPrice: newAvgCost.toFixed(2),
-            },
-          });
+        let newAvgCost = line.unitPrice;
+        if (newStock.greaterThan(0)) {
+          // (oldStock * oldCost + newQty * newPrice) / newStock
+          const oldTotalValue = oldStock.times(oldCost);
+          const newTotalValue = oldTotalValue.plus(line.totalPrice);
+          newAvgCost = newTotalValue.dividedBy(newStock);
         }
-      }
 
-      return { purchaseInvoice, journalEntry };
-    });
+        await prisma.item.update({
+          where: { id: line.itemId },
+          data: {
+            currentStock: newStock.toString(),
+            costPrice: newAvgCost.toFixed(2),
+          },
+        });
+      }
+    }
 
     return NextResponse.json({
       success: true,
       message: `Faktur Pembelian ${purchaseNumber} berhasil diposting. Stok bahan dan jurnal telah diperbarui.`,
-      purchase: result.purchaseInvoice,
-      journalEntry: result.journalEntry,
+      purchase: purchaseInvoice,
+      journalEntry: journalEntry,
     });
   } catch (error) {
     console.error('Error posting purchase invoice:', error);

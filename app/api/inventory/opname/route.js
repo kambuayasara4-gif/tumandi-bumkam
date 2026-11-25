@@ -92,47 +92,42 @@ export async function POST(request) {
       ];
     }
 
-    // Eksekusi transaksi database
-    const result = await prisma.$transaction(async (tx) => {
-      // 1. Posting Jurnal
-      const journal = await postJournalEntry(tx, {
-        entryNumber: journalNumber,
+    // 1. Posting Jurnal
+    const journal = await postJournalEntry(prisma, {
+      entryNumber: journalNumber,
+      date: txDate,
+      referenceType: 'ADJUSTMENT',
+      referenceId: opnameRef,
+      description: journalDesc,
+      items: journalItems,
+    });
+
+    // 2. Catat Mutasi Kartu Stok
+    await prisma.inventoryTransaction.create({
+      data: {
         date: txDate,
-        referenceType: 'ADJUSTMENT',
+        itemId: item.id,
+        type: 'OPNAME_ADJUSTMENT',
+        quantity: diffQty.toString(),
+        unitCost: costPrice.toString(),
+        totalCost: diffAmount.toString(),
+        referenceType: 'OPNAME',
         referenceId: opnameRef,
-        description: journalDesc,
-        items: journalItems,
-      });
+        notes: notes?.trim() || `Penyesuaian fisik: ${systemStock} -> ${realStock} ${item.unit}`,
+      },
+    });
 
-      // 2. Catat Mutasi Kartu Stok
-      await tx.inventoryTransaction.create({
-        data: {
-          date: txDate,
-          itemId: item.id,
-          type: 'OPNAME_ADJUSTMENT',
-          quantity: diffQty.toString(),
-          unitCost: costPrice.toString(),
-          totalCost: diffAmount.toString(),
-          referenceType: 'OPNAME',
-          referenceId: opnameRef,
-          notes: notes?.trim() || `Penyesuaian fisik: ${systemStock} -> ${realStock} ${item.unit}`,
-        },
-      });
-
-      // 3. Update Stok Fisik Item
-      const updatedItem = await tx.item.update({
-        where: { id: item.id },
-        data: { currentStock: realStock.toString() },
-      });
-
-      return { journal, updatedItem, opnameRef };
+    // 3. Update Stok Fisik Item
+    const updatedItem = await prisma.item.update({
+      where: { id: item.id },
+      data: { currentStock: realStock.toString() },
     });
 
     return NextResponse.json({
       success: true,
       message: `Stock Opname berhasil diproses. Stok ${item.name} disesuaikan menjadi ${realStock} ${item.unit} dengan Jurnal ${journalNumber}.`,
-      item: result.updatedItem,
-      journal: result.journal,
+      item: updatedItem,
+      journal: journal,
     });
   } catch (error) {
     console.error('Error stock opname:', error);
