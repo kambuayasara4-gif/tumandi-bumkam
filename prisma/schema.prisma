@@ -3,8 +3,8 @@
 // Kompatibel dengan SQLite (tahap awal) dan mudah dimigrasi ke PostgreSQL
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
